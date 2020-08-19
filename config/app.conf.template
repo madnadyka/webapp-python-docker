@@ -1,0 +1,9 @@
+[POSTGRESQL]
+
+dsn = postgres://postgres:test@/test
+pool_threads = 20
+
+[APP]
+
+port=80
+host=0.0.0.0

@@ -1,0 +1,8 @@
+docker build -t app .
+docker stop app
+docker rm app
+docker run --net=host --name app \
+           --restart=always \
+           -v $(pwd)/src:/src/ \
+           -v $(pwd)/../config:/config/\
+           -it app
