@@ -70,6 +70,7 @@ async def terminate_coroutine(app):
     app['log'].error('Stop request received')
     for task in app['background_tasks']:
         task.cancel()
+    await asyncio.wait(app['background_tasks'])
     app['log'].info("App stopped")
     app['loop'].stop()
 
@@ -97,27 +98,4 @@ if __name__ == '__main__':
 
     #run app
     app=init(logger)
-    start(app)
-
-
-    #config
-    log_level = logging.DEBUG
-    logger = colorlog.getLogger('log')
-    logger.setLevel(log_level)
-    ch = logging.StreamHandler()
-    ch.setLevel(log_level)
-    formatter = colorlog.ColoredFormatter('%(log_color)s%(asctime)s %(levelname)s: %(message)s (%(module)s:%(lineno)d)')
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
-
-
-    jsonlog = logging.FileHandler('logging.log')
-    jsonlog.setLevel(logging.WARNING)
-    formatter = jsonlogger.JsonFormatter('%(created)s %(asctime)s %(levelname)s %(message)s %(module)s %(lineno)d)')
-    jsonlog.setFormatter(formatter)
-    logger.addHandler(jsonlog)
-
-
-    #run app
-    app = init(logger)
     start(app)
