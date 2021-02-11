@@ -42,7 +42,7 @@ def start(app):
     try:
         setup_routes(app)
         #setup_middlewares(app)
-        asyncio.ensure_future(model.init_database(app))
+        #asyncio.ensure_future(model.init_database(app))
         app.on_startup.append(start_background_tasks)
         app.on_cleanup.append(cleanup_background_tasks)
         web.run_app(app, host=app['host'], port=app['port'])
