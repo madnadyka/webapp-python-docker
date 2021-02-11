@@ -4,9 +4,13 @@ test_task:
   setup_script:
     - apt-get update
     - apt-get install -y python3 python3-pip build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev git
+    - mkdir /src
+    - cp app/requirements.txt /
+    - cp -r app/src /
+    - cp -r config /
     - pip3 install --requirement requirements.txt
   test_script:
-    - src/python3 main.py
+    - /src/python3 main.py
   binaries_artifacts:
     path: build/*
   always:
