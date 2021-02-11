@@ -10,7 +10,7 @@ test_task:
     - cp -r config /
     - pip3 install --requirement /requirements.txt
   test_script:
-    - /src/python3 main.py
+    - python3 /src/main.py
   binaries_artifacts:
     path: build/*
   always:
