@@ -8,7 +8,7 @@ test_task:
     - cp app/requirements.txt /
     - cp -r app/src /
     - cp -r config /
-    - pip3 install --requirement requirements.txt
+    - pip3 install --requirement /requirements.txt
   test_script:
     - /src/python3 main.py
   binaries_artifacts:
